@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
+*{
+    font-family: 'PT Serif', serif;
+}
+
+input{
+    border-radius: 0% !important;
+}
+.container{
+    background: rgb(199,237,245);
+    background: linear-gradient(90deg, rgba(199,237,245,1) 0%, rgba(172,172,228,0.3085609243697479) 50%, rgba(199,237,245,1) 100%);
+    border-radius: 10px;
+    color: #333;
+    font-weight: bold;
+    box-shadow: 12px 10px 83px 4px rgba(0,0,0,0.45);
+    -webkit-box-shadow: 12px 10px 83px 4px rgba(0,0,0,0.45);
+    -moz-box-shadow: 12px 10px 83px 4px rgba(0,0,0,0.45);
+}
