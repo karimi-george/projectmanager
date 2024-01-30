@@ -5,7 +5,7 @@ let username = document.getElementById('username'),
 submit = document.getElementById('submit')
 
 
-let arrayOfUsers 
+let arrayOfProjects
 
 let Mode = "create"
 
@@ -13,11 +13,13 @@ let TmpId  // temporary variable to save the Users id
 
 // let's save informations in localstorage
 
-if(localStorage.arrayOfUsers != null){
-    arrayOfUsers = JSON.parse(localStorage.getItem('arrayOfUsers'))
+if(localStorage.arrayOfProjects != null){
+    arrayOfProjects= JSON.parse(localStorage.getItem('arrayofProjects'))
 }
 else{
-     arrayOfUsers = []
+    arrayOfProjects= JSON.parse(localStorage.getItem('arrayofProjects'))
+    arrayOfProjects= JSON.parse(localStorage.getItem('arrayofProjects'))
+    = []
 }
 
 
@@ -25,21 +27,21 @@ else{
 submit.addEventListener('click', function (e) {
     if(Mode === "create"){
 
-        let UsersObject = {
+        let ProjectObject = {
             username: username.value,
             project: project.value,
             category: category.value,
             venue: venue.value
         }
-        arrayOfUsers.push(UsersObject)
-        localStorage.setItem('arrayOfUsers', JSON.stringify(arrayOfUsers))
-        console.log(arrayOfUsers)
+        arrayOfProjects.push(ProjectObject)
+        localStorage.setItem('arrayOfProjects', JSON.stringify(arrayOfProjects))
+        console.log(arrayOfProjects)
         DispayInfos()
         clearText()
     }
     else{
         submit.textContent = "Update"
-        UpdateUsers(TmpId)  // here we replace id with TmpId var because id is local variable
+        UpdateProjects(TmpId)  // here we replace id with TmpId var because id is local variable
         DispayInfos()
         submit.textContent = "Create"
         Mode = "create"
@@ -53,13 +55,13 @@ function DispayInfos() {
         table += `
         <tr>
             <th scope="row">${index}</th>
-            <td>${arrayOfUsers[index].username}</td>
-            <td>${arrayOfUsers[index].project}</td>
-            <td>${arrayOfUsers[index].category}</td>
-            <td>${arrayOfUsers[index].venue}</td>
+            <td>${arrayOfProjects[index].category}</td>
+            <td>${arrayOfProjects[index].username}</td>
+            <td>${arrayOfProjects[index].project}</td>
+            <td>${arrayOfProjects[index].venue}</td>
             <td>
-                <button class="btn btn-warning" onclick="UpdateUsers(${index})">Reassign</button>
-                <button class="btn btn-danger" onclick="DeleteUsers(${index})">Remove</button>
+                <button class="btn btn-warning" onclick="UpdateProjects(${index})">Reassign</button>
+                <button class="btn btn-danger" onclick="DeleteProjects(${index})">Remove</button>
             </td>
         </tr>
         `
@@ -67,43 +69,43 @@ function DispayInfos() {
     }
 }
 function clearText() {
+        category.value = "",
         username.value = "",
         project.value = "",
-        category.value = "",
         venue.value = ""
 }
 
 
 // to delete an Users we should identify him by id
 
-function DeleteUsers(id) {
-    arrayOfUsers.splice(id, 1) // deleting 
-    localStorage.setItem('arrayOfUsers', JSON.stringify(arrayOfUsers)) // update localstorage
+function DeleteProjects(id) {
+    arrayOfProjects.splice(id, 1) // deleting 
+    localStorage.setItem('arrayOfProjects', JSON.stringify(arrayOfProjects)) // update localstorage
     DispayInfos() // displaying informations after deleting
 }
 
 
 
-function UpdateUsers(id) {
+function UpdateProjects(id) {
     TmpId = id
     Mode = "update"
     submit.textContent = "Update"
     // also to modify an Users infos we sould find him by id 
 
 
-    let UsersObject = {
+    let ProjectObject = {
         username: username.value,
         project:project.value,
         category: category.value,
         venue: venue.value
     }
-       username.value = arrayOfUsers[id].username
-       project.value = arrayOfUsers[id].project
-       category.value = arrayOfUsers[id].category
-       venue.value = arrayOfUsers[id].venue
+       username.value = arrayOfProjects[id].username
+       project.value = arrayOfProjects[id].project
+       category.value = arrayOfProjects[id].category
+       venue.value = arrayOfProjects[id].venue
 
-       arrayOfUsers[TmpId] = UsersObject
-        localStorage.setItem('arrayOfUsers', JSON.stringify(arrayOfUsers))
+       arrayOfProjects[TmpId] = ProjectObject
+        localStorage.setItem('arrayofProjects', JSON.stringify(arrayOfProjects))
 }
 
 
